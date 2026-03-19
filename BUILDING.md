@@ -23,13 +23,34 @@ sudo cmake --install .
 ## Install dependencies (from `cmake.libraries`)
 
 
+### System packages (required)
+
+```bash
+sudo apt-get update && sudo apt-get install -y zlib1g-dev
+```
+
+
 
 ### Development tooling (optional)
 
 ```bash
-sudo apt-get update && sudo apt-get install -y valgrind gdb perl autoconf automake libtool python3 python3-venv python3-pip
+sudo apt-get update && sudo apt-get install -y python3 python3-venv python3-pip valgrind gdb perl autoconf automake libtool
 ```
 
+
+
+### a-memory-library
+
+Clone & build:
+
+```bash
+git clone --depth 1 "https://github.com/contactandyc/a-memory-library.git" "a-memory-library"
+cd a-memory-library
+./build.sh clean
+./build.sh install
+cd ..
+rm -rf a-memory-library
+```
 
 
 ### libm
@@ -38,6 +59,85 @@ Install via package manager:
 
 ```bash
 sudo apt-get update && sudo apt-get install -y None
+```
+
+
+### the-lz4-library
+
+Clone & build:
+
+```bash
+git clone --depth 1 "https://github.com/contactandyc/the-lz4-library.git" "the-lz4-library"
+cd the-lz4-library
+./build.sh clean
+./build.sh install
+cd ..
+rm -rf the-lz4-library
+```
+
+
+### the-macro-library
+
+Clone & build:
+
+```bash
+git clone --depth 1 "https://github.com/contactandyc/the-macro-library.git" "the-macro-library"
+cd the-macro-library
+./build.sh clean
+./build.sh install
+cd ..
+rm -rf the-macro-library
+```
+
+
+### a-json-sax-library
+
+Clone & build:
+
+```bash
+git clone --depth 1 "https://github.com/contactandyc/a-json-sax-library.git" "a-json-sax-library"
+cd a-json-sax-library
+./build.sh clean
+./build.sh install
+cd ..
+rm -rf a-json-sax-library
+```
+
+
+### a-json-library
+
+Clone & build:
+
+```bash
+git clone --depth 1 "https://github.com/contactandyc/a-json-library.git" "a-json-library"
+cd a-json-library
+./build.sh clean
+./build.sh install
+cd ..
+rm -rf a-json-library
+```
+
+
+### ZLIB
+
+Install via package manager:
+
+```bash
+sudo apt-get update && sudo apt-get install -y zlib1g-dev
+```
+
+
+### the-io-library
+
+Clone & build:
+
+```bash
+git clone --depth 1 "https://github.com/contactandyc/the-io-library.git" "the-io-library"
+cd the-io-library
+./build.sh clean
+./build.sh install
+cd ..
+rm -rf the-io-library
 ```
 
 
@@ -71,15 +171,15 @@ RUN apt-get update && apt-get install -y \
 
 # Development tooling (optional)
 RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-venv \
+    python3-pip \
     valgrind \
     gdb \
     perl \
     autoconf \
     automake \
     libtool \
-    python3 \
-    python3-venv \
-    python3-pip \
  && rm -rf /var/lib/apt/lists/*
 
 # --- Install CMake from official binaries (arch-aware) ------------------------
@@ -106,6 +206,60 @@ WORKDIR /workspace
 # --- Optional Python venv for tools ------------------------------------------
 RUN python3 -m venv /opt/venv && /opt/venv/bin/pip install --upgrade pip
 ENV PATH="/opt/venv/bin:${PATH}"
+
+# --- Build & install a-memory-library ---
+RUN set -eux; \
+  git clone --depth 1 "https://github.com/contactandyc/a-memory-library.git" "a-memory-library" && \
+  cd a-memory-library && \
+  ./build.sh clean && \
+  ./build.sh install && \
+  cd .. && \
+  rm -rf a-memory-library
+
+# --- Build & install the-lz4-library ---
+RUN set -eux; \
+  git clone --depth 1 "https://github.com/contactandyc/the-lz4-library.git" "the-lz4-library" && \
+  cd the-lz4-library && \
+  ./build.sh clean && \
+  ./build.sh install && \
+  cd .. && \
+  rm -rf the-lz4-library
+
+# --- Build & install the-macro-library ---
+RUN set -eux; \
+  git clone --depth 1 "https://github.com/contactandyc/the-macro-library.git" "the-macro-library" && \
+  cd the-macro-library && \
+  ./build.sh clean && \
+  ./build.sh install && \
+  cd .. && \
+  rm -rf the-macro-library
+
+# --- Build & install a-json-sax-library ---
+RUN set -eux; \
+  git clone --depth 1 "https://github.com/contactandyc/a-json-sax-library.git" "a-json-sax-library" && \
+  cd a-json-sax-library && \
+  ./build.sh clean && \
+  ./build.sh install && \
+  cd .. && \
+  rm -rf a-json-sax-library
+
+# --- Build & install a-json-library ---
+RUN set -eux; \
+  git clone --depth 1 "https://github.com/contactandyc/a-json-library.git" "a-json-library" && \
+  cd a-json-library && \
+  ./build.sh clean && \
+  ./build.sh install && \
+  cd .. && \
+  rm -rf a-json-library
+
+# --- Build & install the-io-library ---
+RUN set -eux; \
+  git clone --depth 1 "https://github.com/contactandyc/the-io-library.git" "the-io-library" && \
+  cd the-io-library && \
+  ./build.sh clean && \
+  ./build.sh install && \
+  cd .. && \
+  rm -rf the-io-library
 
 
 # --- Build & install this project --------------------------------------------
