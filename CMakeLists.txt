@@ -48,8 +48,11 @@ include(GNUInstallDirs)
 
 # ---- Dependencies (PkgConfig Shims) ----
 
+
 # ── Library variants (ALL are defined & built/installed) ──────────────────────
-add_library(embedding_library_debug  src/int8_embedding_table.c)
+
+add_library(embedding_library_debug STATIC
+  src/int8_embedding_table.c)
 
 target_include_directories(embedding_library_debug PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -83,7 +86,9 @@ install(TARGETS embedding_library_debug EXPORT embedding_libraryTargets
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-add_library(embedding_library_memory  src/int8_embedding_table.c)
+
+add_library(embedding_library_memory STATIC
+  src/int8_embedding_table.c)
 
 target_include_directories(embedding_library_memory PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -120,7 +125,9 @@ install(TARGETS embedding_library_memory EXPORT embedding_libraryTargets
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-add_library(embedding_library_static  src/int8_embedding_table.c)
+
+add_library(embedding_library_static STATIC
+  src/int8_embedding_table.c)
 
 target_include_directories(embedding_library_static PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -154,7 +161,9 @@ install(TARGETS embedding_library_static EXPORT embedding_libraryTargets
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-add_library(embedding_library_shared  src/int8_embedding_table.c)
+
+add_library(embedding_library_shared SHARED
+  src/int8_embedding_table.c)
 
 target_include_directories(embedding_library_shared PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -260,3 +269,4 @@ install(FILES
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/embedding_library
 )
 # Extra project-specific targets
+
