@@ -1,11 +1,13 @@
-# SPDX-FileCopyrightText: 2024-2026 Andy Curtis <contactandyc@gmail.com>
-# SPDX-FileCopyrightText: 2024–2025 Knode.ai — technical questions: contact Andy (above)
+# SPDX-FileCopyrightText: 2024–2026 Andy Curtis <contactandyc@gmail.com>
+# SPDX-FileCopyrightText: 2024–2025 Knode.ai
 # SPDX-License-Identifier: Apache-2.0
+#
+# Maintainer: Andy Curtis <contactandyc@gmail.com>
 
 cmake_minimum_required(VERSION 3.20)
 
 # A small "apps" project that builds example/demo binaries.
-project(embedding-library_demo LANGUAGES C)
+project(embedding_library_demo LANGUAGES C)
 
 # Optional math lib on POSIX
 find_library(M_LIB m)
@@ -34,7 +36,7 @@ if("CXX" IN_LIST CMAKE_PROJECT_LANGUAGES)
 endif()
 
 # Link the union of deps computed for this app context
-target_link_libraries(parse_sentences PRIVATE  m  embedding_library::embedding_library  a_memory_library::a_memory_library  the_io_library::the_io_library  a_json_library::a_json_library)
+target_link_libraries(parse_sentences PRIVATE  embedding_library::embedding_library  a_memory_library::a_memory_library  the_io_library::the_io_library  a_json_library::a_json_library)
 
 # Optional libm
 if(M_LIB)
