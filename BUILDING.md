@@ -1,7 +1,7 @@
 # BUILDING
 
 This project: **Embedding Library**
-Version: **0.0.1**
+Version: **0.1.0**
 
 ## Local build
 
