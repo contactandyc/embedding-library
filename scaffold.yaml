@@ -11,14 +11,11 @@ base_templates:
 depends_on:
   - system/libm
 
-apps:
-  context:
-    dest: examples
-    depends_on:
-      - https://github.com/contactandyc/embedding-library.git
+examples:
+  depends_on:
       - https://github.com/contactandyc/a-memory-library.git
       - https://github.com/contactandyc/the-io-library.git
       - https://github.com/contactandyc/a-json-library.git
   demo:
-    binaries:
+    targets:
       - parse_sentences
