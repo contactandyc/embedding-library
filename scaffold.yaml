@@ -1,5 +1,5 @@
 project_title: Embedding Library
-version: 0.1.1
+version: 0.1.2
 stack: c/cmake
 date_created: 2024-01-01
 profile: default-knode
