@@ -9,6 +9,11 @@ cmake_minimum_required(VERSION 3.20)
 # A dynamically generated examples project.
 project(embedding_library_demo LANGUAGES C)
 
+if(CMAKE_PREFIX_PATH)
+  include_directories("${CMAKE_PREFIX_PATH}/include")
+  link_directories("${CMAKE_PREFIX_PATH}/lib")
+endif()
+
 find_library(M_LIB m)
 
 find_package(a_memory_library CONFIG REQUIRED)
@@ -35,7 +40,7 @@ set_target_properties(parse_sentences PROPERTIES
 if(NOT TARGET embedding_library::embedding_library)
   find_package(embedding_library CONFIG REQUIRED)
 endif()
-target_link_libraries(parse_sentences PRIVATE embedding_library::embedding_library)
+# target_link_libraries(parse_sentences PRIVATE embedding_library::embedding_library)
 
 target_link_libraries(parse_sentences PRIVATE
   m
